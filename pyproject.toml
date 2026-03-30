@@ -1,0 +1,47 @@
+[project]
+name = "medextract"
+version = "0.1.0"
+license = "UNLICENSE"
+authors = [
+  {name = "Wilian Cirillo", email = "wilian@hey.com"}
+]
+description = "Ferramenta em Python para extrair dados de PDFs hospitalares e gerar relatórios em CSV/XLSX."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "openpyxl>=3.1.0",
+    "pymupdf>=1.26.0",
+    "typer>=0.16.0",
+]
+
+[tool.uv]
+package = true
+
+[project.scripts]
+medextract = "medextract.__main__:app"
+
+[tool.pytest.ini_options]
+filterwarnings = [
+  "ignore::DeprecationWarning"
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["B008"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+ignore_missing_imports = true
+
+[dependency-groups]
+dev = [
+    "ipdb>=0.13.13",
+    "mypy>=1.0.0",
+    "pytest>=8.4.0",
+    "ruff>=0.9.0",
+]
